@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge, chrome=1">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no, address=no, email=no">
+  <meta name="keywords" content=" ">
+  <meta name="description" content=" ">
+  <title>ハーリークイズ | Webページ作成ソフトウェア</title>
+  <style>
+    .preview #preview-area .base-area.base-column4 .col .base-column2 .col {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body class="preview">
+  <div id="preview-area">
+    <div id="base-preview">
+      <div class="view-body"><div id="base-contents" class="view-contents"><div class="base-drop ui-droppable"></div><div class="base-area base-column1" style="background-color: #f9f4ea;" id="col_2025541204118"><div class="edit_outline"><div class="col edit_view"><div class="edit_tool"><a href="#" class="settingBtn"><i class="ico ico_setting"></i></a><a href="#" class="deleteBtn"><i class="ico ico_delete"></i></a></div><div class="base-area base-column2"><div class="col duble flex-left"><a href="top.html" style="font-size: 2.5rem; font-weight: bold; color: rgb(3, 155, 229); border: 2px solid rgb(0, 0, 255); background-color: rgb(207, 226, 243); text-align: center; font-style: italic;" class="link" target="_self">TOPに戻る</a></div><div class="col duble flex-left"><h1 style="font-size: 2.5rem; text-align: center; border: 2px solid rgb(64, 164, 73); color: rgb(64, 164, 73); background-color: rgb(255, 238, 125);">ハーリークイズ</h1></div></div></div></div></div><div class="base-drop ui-droppable"></div><div class="base-area base-column1" style="background-color: #f9f4ea;" id="col_2025541204315"><div class="edit_outline"><div class="col edit_view duble flex-left"><div class="edit_tool"><a href="#" class="settingBtn"><i class="ico ico_setting"></i></a><a href="#" class="deleteBtn"><i class="ico ico_delete"></i></a></div><p>すみません。また作ります</p></div></div></div><div class="base-drop ui-droppable"></div></div></div>
+    </div>
+  </div>
+
+  <div id="mordal-base" class=""></div>
+  <div id="mordal-window" class="window">
+    <a href="#" class="modal_closebtn"><i class="ico ico_modal_close"></i>閉じる</a>
+    <div class="window-outline">
+      <img src="https://prg.tsho.jp/common/img/true.png">
+    </div>
+  </div>
+  <script src="https://prg.tsho.jp/preview/common/js/import-css.js"></script>
+  <script src="https://prg.tsho.jp/preview/common/js/import-js.js"></script>
+  <script>
+    setSlick();
+
+    $("body.preview .view-body .col").removeClass("duble").removeClass("edit_view");
+    $("body.preview .view-body .edit_outline .edit_tool").remove();
+    $("body.preview .view-body .base-drop").remove();
+
+    $("body.preview .view-body a").each(function(){
+      if($(this).attr("href").indexOf('.html') > 0){
+      //console.log("??",$(this).attr("href"));
+      $(this).off("click");
+      $(this).on("click", function () {
+        var _url = $(this).attr("href");
+        var _blk = $(this).attr("target");
+        //window.open(_url, '_blank', '');
+        if(_blk == "_blank"){
+          window.open(_url, '_blank', '');
+        }else{
+          location.href = _url;
+        }
+      });
+      }
+    })
+
+    $("body.preview .view-body .link").off("click");
+    $("body.preview .view-body .link").on("click",function(){
+      var _url = $(this).attr("href");
+      var _blank = $(this).attr("target");
+      if(_url != "#"){
+        if( _blank == "_blank"){
+          window.open(_url, '_blank','');
+        }else{
+          location.href = _url;
+        }
+      }
+    });
+
+    $(".js_map").each(function () {
+
+      $(this).html("");
+
+      var _map_id = $(this).attr("id");
+      var _ido = Number($(this).attr("data-ido"));
+      var _keido = Number($(this).attr("data-keido"));
+
+      var _map = L.map(_map_id);
+      L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', {
+        attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'>地理院タイル</a>"
+      }).addTo(_map);
+      _map.setView([_ido, _keido], 12);
+
+      var _marker = L.marker([_ido, _keido]).addTo(_map);
+
+    })
+
+    setFontSize();
+
+    function setFontSize() {
+
+      var _base = 16;
+
+      $("h1").each(function () {
+        var _s = $(this).css("font-size").replace("px", "");
+        $(this).attr({ "data-base": _s });
+      })
+
+      $("h2").each(function () {
+        var _s = $(this).css("font-size").replace("px", "");
+        $(this).attr({ "data-base": _s });
+      })
+
+      $("h3").each(function () {
+        var _s = $(this).css("font-size").replace("px", "");
+        $(this).attr({ "data-base": _s });
+      })
+
+      $("h4").each(function () {
+        var _s = $(this).css("font-size").replace("px", "");
+        $(this).attr({ "data-base": _s });
+      })
+
+      $("h5").each(function () {
+        var _s = $(this).css("font-size").replace("px", "");
+        $(this).attr({ "data-base": _s });
+      })
+
+      $("p").each(function () {
+        var _s = $(this).css("font-size").replace("px", "");
+        $(this).attr({ "data-base": _s });
+
+        if ($(this).text() == "クリックして好きなパーツを配置しよう") {
+          $(this).parent().hide();
+        }
+      })
+
+      $("a").each(function () {
+        var _s = $(this).css("font-size").replace("px", "");
+        $(this).attr({ "data-base": _s });
+      })
+
+      $(".fontsize-chenge li").each(function () {
+        $(this).find("a").on("click", function () {
+          var _size = $(this).attr("data-size");
+
+          console.log("_size", _size);
+
+          //$("body").css({"font-size":_base*(_size/100)});
+
+          $(".col>h1").each(function () {
+            var _s = $(this).attr("data-base").replace("px", "");
+            $(this).css({ "font-size": _s * (_size / 100) });
+          })
+
+          $(".col>h2").each(function () {
+            var _s = $(this).attr("data-base").replace("px", "");
+            $(this).css({ "font-size": _s * (_size / 100) });
+          })
+
+          $(".col>h3").each(function () {
+            var _s = $(this).attr("data-base").replace("px", "");
+            $(this).css({ "font-size": _s * (_size / 100) });
+          })
+
+          $(".col>h4").each(function () {
+            var _s = $(this).attr("data-base").replace("px", "");
+            $(this).css({ "font-size": _s * (_size / 100) });
+          })
+
+          $(".col>h5").each(function () {
+            var _s = $(this).attr("data-base").replace("px", "");
+            $(this).css({ "font-size": _s * (_size / 100) });
+          })
+
+          $(".col>p").each(function () {
+            var _s = $(this).attr("data-base").replace("px", "");
+            $(this).css({ "font-size": _s * (_size / 100) });
+          })
+
+          $(".col>a").each(function () {
+            var _s = $(this).attr("data-base").replace("px", "");
+            $(this).css({ "font-size": _s * (_size / 100) });
+          })
+
+          return false;
+        })
+      })
+    }
+
+  </script>
+</body>
+</html>
